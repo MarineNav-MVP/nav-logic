@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MarineNav - Sensor Bridge Dashboard</title>
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="colreg_debug.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>⚓ MarineNav Sensor Bridge</h1>
+            <div class="connection-status" id="connectionStatus">
+                <span class="status-dot"></span>
+                <span class="status-text">Disconnected</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Control Panel -->
+            <aside class="control-panel">
+                <h2>🎛 Control Panel</h2>
+                
+                <!-- Simulation Controls -->
+                <div class="control-section">
+                    <h3>Simulation</h3>
+                    <div class="control-group">
+                        <label for="scenarioSelect">Scenario:</label>
+                        <select id="scenarioSelect">
+                            <option value="blank_ocean">[FREE ROAM] Infinite Ocean</option>
+                            <option value="crossing_starboard">Crossing (Starboard)</option>
+                            <option value="head_on">Head-On Situation</option>
+                            <option value="overtaking">Overtaking</option>
+                            <option value="colreg_complex">COLREG Complex (NUC/SAIL)</option>
+                            <optgroup label="COLREG Suite">
+                                <option value="colreg_suite/S1_HeadOn">S1: Head-On</option>
+                                <option value="colreg_suite/S2_Crossing_Right">S2: Crossing (Give-Way)</option>
+                                <option value="colreg_suite/S3_Crossing_Left">S3: Crossing (Stand-On)</option>
+                                <option value="colreg_suite/S5_Priority_NUC">S5: Priority (NUC)</option>
+                                <option value="colreg_suite/S5_Priority_SAILING">S5: Priority (SAIL)</option>
+                                <option value="colreg_suite/S6_Fog_HeadOn">S6: Fog Head-On</option>
+                                <option value="colreg_suite/S7_Anchored">S7: Anchored</option>
+                            </optgroup>
+                            <option value="kronstadt_petersburg">Kronstadt - St. Petersburg</option>
+                        </select>
+                    </div>
+
+                    <div class="control-group">
+                        <label>Environment:</label>
+                        <div class="button-group">
+                            <button id="btnDay" class="btn btn-secondary">☀️ Day</button>
+                            <button id="btnNight" class="btn btn-dark">🌙 Night</button>
+                            <button id="btnFog" class="btn btn-info">🌫️ Fog</button>
+                            <button id="btnChaos" class="btn btn-danger">🌪️ Chaos</button>
+                        </div>
+                    </div>
+                    
+                    <div class="button-group">
+                        <button id="btnStart" class="btn btn-primary">▶ Start</button>
+                        <button id="btnStop" class="btn btn-danger">⏹ Stop</button>
+                        <button id="btnRestart" class="btn btn-warning">🔄 Restart</button>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label for="timeScaleSlider">Time Scale: <span id="timeScaleValue">1x</span></label>
+                        <input type="range" id="timeScaleSlider" min="1" max="100" value="1" step="1">
+                    </div>
+                </div>
+
+                <!-- Camera PTZ Controls -->
+                <div class="control-section">
+                    <h3>📷 PTZ Camera</h3>
+                    <div class="camera-status">
+                        <div class="status-row">
+                            <span>Pan:</span>
+                            <span id="cameraPan">0°</span>
+                        </div>
+                        <div class="status-row">
+                            <span>Tilt:</span>
+                            <span id="cameraTilt">0°</span>
+                        </div>
+                        <div class="status-row">
+                            <span>Zoom:</span>
+                            <span id="cameraZoom">1x</span>
+                        </div>
+                        <div class="status-row">
+                            <span>Status:</span>
+                            <span id="cameraMoving">Idle</span>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label>Pan: <span id="panValue">0°</span></label>
+                        <div class="circular-slider-container">
+                            <svg class="circular-slider" viewBox="0 0 200 200" id="panCircularSlider">
+                                <!-- Background circle -->
+                                <circle class="slider-track" cx="100" cy="100" r="80" />
+                                <!-- Active arc (starts from top, goes clockwise) -->
+                                <circle class="slider-active" cx="100" cy="100" r="80" 
+                                    stroke-dasharray="0 502.65" stroke-dashoffset="0" />
+                                <!-- Center indicator group -->
+                                <g class="slider-indicator" transform="rotate(0, 100, 100)">
+                                    <!-- Pointer line -->
+                                    <line x1="100" y1="100" x2="100" y2="25" 
+                                          stroke="#e94560" stroke-width="4" stroke-linecap="round" />
+                                    <!-- Center hub -->
+                                    <circle cx="100" cy="100" r="12" fill="#e94560" />
+                                    <circle cx="100" cy="100" r="6" fill="#fff" />
+                                </g>
+                                <!-- Compass labels with correct positioning -->
+                                <text class="compass-label n" x="100" y="12" text-anchor="middle" dominant-baseline="middle">N</text>
+                                <text class="compass-label e" x="188" y="100" text-anchor="middle" dominant-baseline="middle">E</text>
+                                <text class="compass-label s" x="100" y="188" text-anchor="middle" dominant-baseline="middle">S</text>
+                                <text class="compass-label w" x="12" y="100" text-anchor="middle" dominant-baseline="middle">W</text>
+                            </svg>
+                        </div>
+                        <input type="range" id="cameraPanSlider" min="-180" max="180" value="0" class="pan-slider-hidden" />
+                    </div>
+                    
+                    <div class="control-group">
+                        <label for="cameraTiltSlider">Tilt: <span id="tiltValue">0°</span></label>
+                        <input type="range" id="cameraTiltSlider" min="-30" max="30" value="0">
+                    </div>
+                    
+                    <div class="control-group">
+                        <label for="cameraZoomSlider">Zoom: <span id="zoomValue">1x</span></label>
+                        <input type="range" id="cameraZoomSlider" min="1" max="10" value="1" step="1">
+                    </div>
+                </div>
+
+                <!-- Statistics -->
+                <div class="control-section">
+                    <h3>📊 Statistics</h3>
+                    <div class="statistics">
+                        <div class="stat-item">
+                            <span class="stat-label">Speed:</span>
+                            <span id="statSpeed" class="stat-value">0.0 kn</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Course:</span>
+                            <span id="statCourse" class="stat-value">0°</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Targets:</span>
+                            <span id="statTargets" class="stat-value">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Lat:</span>
+                            <span id="statLat" class="stat-value">0.000000</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Lon:</span>
+                            <span id="statLon" class="stat-value">0.000000</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Map Container -->
+            <main class="map-container">
+                <div id="map"></div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- Paho MQTT -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"></script>
+    
+    <!-- Application Scripts -->
+    <script src="map.js"></script>
+    <script src="control.js"></script>
+</body>
+</html>

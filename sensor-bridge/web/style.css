@@ -1,0 +1,440 @@
+/* style.css - MarineNav Sensor Bridge Dashboard */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1a1a2e;
+    color: #eee;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #16213e;
+    border-bottom: 2px solid #0f3460;
+}
+
+.header h1 {
+    font-size: 1.5rem;
+    color: #e94560;
+}
+
+.connection-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background-color: #0f3460;
+    border-radius: 20px;
+}
+
+.status-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #666;
+}
+
+.connection-status.connected .status-dot {
+    background-color: #4ade80;
+    box-shadow: 0 0 8px #4ade80;
+}
+
+.connection-status.disconnected .status-dot {
+    background-color: #ef4444;
+}
+
+.status-text {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Main Content */
+.main-content {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* Control Panel */
+.control-panel {
+    width: 320px;
+    background-color: #16213e;
+    padding: 20px;
+    overflow-y: auto;
+    border-right: 2px solid #0f3460;
+}
+
+.control-panel h2 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #e94560;
+}
+
+.control-section {
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #0f3460;
+}
+
+.control-section:last-child {
+    border-bottom: none;
+}
+
+.control-section h3 {
+    font-size: 1rem;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.control-group {
+    margin-bottom: 15px;
+}
+
+.control-group label {
+    display: block;
+    font-size: 0.85rem;
+    color: #aaa;
+    margin-bottom: 5px;
+}
+
+.control-group input[type="range"] {
+    width: 100%;
+    margin-top: 5px;
+}
+
+.control-group select {
+    width: 100%;
+    padding: 8px;
+    background-color: #0f3460;
+    color: #fff;
+    border: 1px solid #1a1a2e;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.btn {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background-color: #e94560;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #ff6b6b;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.btn-danger:hover {
+    background-color: #ff4757;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    color: #000;
+}
+
+.btn-warning:hover {
+    background-color: #ffdb4d;
+}
+
+/* Camera Status */
+.camera-status {
+    background-color: #0f3460;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.status-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    font-size: 0.85rem;
+}
+
+.status-row span:first-child {
+    color: #aaa;
+}
+
+.status-row span:last-child {
+    color: #fff;
+    font-weight: 600;
+}
+
+/* Compass Rose for Pan Control - Hidden with circular slider */
+.compass-rose,
+.pan-slider-hidden {
+    display: none;
+}
+
+/* Circular Slider Container */
+.circular-slider-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 0;
+    position: relative;
+}
+
+/* Circular Slider SVG */
+.circular-slider {
+    width: 200px;
+    height: 200px;
+    cursor: pointer;
+    user-select: none;
+    overflow: visible;
+}
+
+/* Slider Track */
+.slider-track {
+    fill: none;
+    stroke: #0f3460;
+    stroke-width: 12;
+}
+
+/* Slider Active Arc */
+.slider-active {
+    fill: none;
+    stroke: #e94560;
+    stroke-width: 12;
+    stroke-linecap: round;
+    transition: stroke-dasharray 0.05s ease-out, stroke-dashoffset 0.05s ease-out;
+}
+
+/* Slider Indicator (rotates) */
+.slider-indicator {
+    cursor: pointer;
+    transition: transform 0.05s ease-out;
+    pointer-events: none;
+}
+
+.slider-indicator line {
+    filter: drop-shadow(0 0 3px rgba(233, 69, 96, 0.8));
+}
+
+.slider-indicator circle:first-child {
+    filter: drop-shadow(0 0 5px rgba(233, 69, 96, 0.6));
+}
+
+/* Compass Labels */
+.compass-label {
+    font-size: 16px;
+    font-weight: bold;
+    fill: #aaa;
+    pointer-events: none;
+    text-anchor: middle;
+    dominant-baseline: middle;
+}
+
+.compass-label.n { fill: #ff6b6b; font-size: 18px; }
+.compass-label.e { fill: #4ade80; }
+.compass-label.s { fill: #fbbf24; }
+.compass-label.w { fill: #60a5fa; }
+
+/* Hover effects */
+.circular-slider:hover .slider-track {
+    stroke: #1a3a5c;
+}
+
+.circular-slider:active .slider-indicator line {
+    stroke: #ff6b6b;
+}
+
+/* Old compass rose hidden */
+
+/* Zoom Slider Value Display */
+#zoomValue, #panValue, #tiltValue {
+    color: #4ade80;
+    font-weight: 600;
+}
+
+/* Statistics */
+.statistics {
+    background-color: #0f3460;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #1a1a2e;
+}
+
+.stat-item:last-child {
+    border-bottom: none;
+}
+
+.stat-label {
+    color: #aaa;
+    font-size: 0.85rem;
+}
+
+.stat-value {
+    color: #4ade80;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* Map Container */
+.map-container {
+    flex: 1;
+    position: relative;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+}
+
+/* Leaflet Custom Styles */
+.leaflet-popup-content-wrapper {
+    background-color: #16213e;
+    color: #fff;
+}
+
+.leaflet-popup-tip {
+    background-color: #16213e;
+}
+
+/* Ship markers with camera indicator */
+.ship-marker {
+    transition: all 0.3s ease;
+}
+
+.own-ship-icon {
+    filter: drop-shadow(0 0 8px #e94560);
+}
+
+.target-ship-icon {
+    filter: drop-shadow(0 0 4px #4ade80);
+}
+
+/* Camera indicator on ship marker */
+.ship-with-camera {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ship-icon-svg {
+    transition: transform 0.3s ease;
+    transform-origin: center;
+    z-index: 1;
+}
+
+.camera-direction-indicator {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    pointer-events: none;
+    transition: transform 0.15s ease-out;
+    z-index: 100;
+    transform-origin: center;
+}
+
+.camera-beam {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    top: 5px;
+    left: 5px;
+    background: conic-gradient(
+        from -20deg,
+        rgba(74, 222, 128, 0.8) 0deg,
+        rgba(74, 222, 128, 0.5) 20deg,
+        rgba(74, 222, 128, 0.2) 40deg,
+        transparent 60deg
+    );
+    border-radius: 50%;
+    transform-origin: center;
+    box-shadow: 0 0 10px rgba(74, 222, 128, 0.6);
+    z-index: 5;
+    opacity: 0.85;
+}
+
+.camera-dot {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #fbbf24;
+    border-radius: 50%;
+    top: 8px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 8px #fbbf24, 0 0 15px rgba(251, 191, 36, 0.5);
+    z-index: 20;
+}
+
+/* Add a direction arrow for better visibility */
+.camera-arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 18px solid #fbbf24;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    filter: drop-shadow(0 0 3px #fbbf24);
+    z-index: 30;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-content {
+        flex-direction: column;
+    }
+    
+    .control-panel {
+        width: 100%;
+        max-height: 40vh;
+        border-right: none;
+        border-bottom: 2px solid #0f3460;
+    }
+    
+    .map-container {
+        height: 60vh;
+    }
+}

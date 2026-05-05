@@ -1,0 +1,136 @@
+/* Night Mode Support */
+body.night-mode {
+    background-color: #1a1a2e;
+    color: #e0e0e0;
+}
+
+body.night-mode .main-content {
+    background-color: #16213e;
+}
+
+body.night-mode aside.control-panel {
+    background: #1a1a2e;
+    border-right-color: #0f3460;
+}
+
+body.night-mode .control-section {
+    background: #16213e;
+    border-color: #0f3460;
+}
+
+body.night-mode .stat-value {
+    color: #4ade80;
+}
+
+body.night-mode #map {
+    filter: invert(100%) hue-rotate(180deg) brightness(85%) contrast(85%);
+}
+
+/* Fog Mode Effect */
+body.fog-mode #map {
+    filter: grayscale(80%) blur(1px) brightness(90%);
+}
+
+body.fog-mode::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(200, 200, 200, 0.2);
+    pointer-events: none;
+    z-index: 1000;
+}
+
+body.fog-mode.night-mode::after {
+    background: rgba(50, 50, 50, 0.4);
+}
+
+.target-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: none;
+}
+
+.ship-marker {
+    transition: all 0.3s ease;
+}
+
+.target-ship-icon {
+    filter: drop-shadow(0 0 4px #4ade80);
+}
+
+.target-label {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 2px 4px;
+    border-radius: 3px;
+    pointer-events: none;
+}
+
+/* COLREG Visual Stacks */
+.colreg-lights-stack, .colreg-shapes-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    margin-bottom: 2px;
+    pointer-events: none;
+}
+
+.light-bulb {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+.day-shape {
+    font-size: 14px;
+    line-height: 10px;
+    color: #000;
+    text-shadow: 0 0 2px rgba(255,255,255,0.8);
+    font-weight: bold;
+}
+
+/* Signal Flash Animation */
+.signal-flash-overlay {
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    top: -10%;
+    left: -10%;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0);
+    pointer-events: none;
+    z-index: 200;
+    transition: background-color 0.1s ease;
+}
+
+.signal-flash-overlay.active {
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 30px 10px rgba(255, 255, 255, 0.9);
+}
+
+body.night-mode .signal-flash-overlay.active {
+    background-color: rgba(255, 255, 0, 0.9);
+    box-shadow: 0 0 40px 15px rgba(255, 255, 0, 0.8);
+}
+
+/* Animations */
+@keyframes pulse-red {
+    0% { background-color: #ff4b2b; box-shadow: 0 0 0 0 rgba(255, 75, 43, 0.7); }
+    70% { background-color: #ff416c; box-shadow: 0 0 0 10px rgba(255, 75, 43, 0); }
+    100% { background-color: #ff4b2b; box-shadow: 0 0 0 0 rgba(255, 75, 43, 0); }
+}
+
+/* Position adjustments */
+.ship-with-camera .colreg-lights-stack, 
+.ship-with-camera .colreg-shapes-stack {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}

@@ -1,0 +1,26 @@
+{
+  "name": "Crossing Situation - Give Way to Starboard",
+  "rule": "COLREGS-15",
+  "description": "Цель пересекает курс справа налево. Мы должны уступить.",
+  "own_ship": {
+    "id": "OWN",
+    "start": {"lat": 59.9933, "lon": 29.7658},
+    "course": 0.0,
+    "speed": 10.5,
+    "ship_type": "cargo"
+  },
+  "targets": [
+    {
+      "id": "TR01",
+      "start": {"lat": 59.9933, "lon": 29.7750},
+      "course": 270.0,
+      "speed": 12.0,
+      "ship_type": "cargo"
+    }
+  ],
+  "simulation": {
+    "duration_min": 30,
+    "update_hz": 1.0,
+    "radar_range_nm": 12.0
+  }
+}

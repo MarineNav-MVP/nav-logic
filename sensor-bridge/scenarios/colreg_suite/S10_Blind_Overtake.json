@@ -1,0 +1,43 @@
+{
+  "id": "S10_Blind_Overtake",
+  "name": "Blind Overtake",
+  "rule": "Rule 13 + 14",
+  "description": "Обгоняем медленное судно, а из-за него выходит встречное.",
+  "own_ship": {
+    "id": "OWN",
+    "course": 0,
+    "speed": 15,
+    "start": {
+      "lat": 60.0,
+      "lon": 30.0
+    }
+  },
+  "targets": [
+    {
+      "id": "TGT_SLOW",
+      "type": "power",
+      "colreg_status": "NORMAL",
+      "course": 0,
+      "speed": 5,
+      "start": {
+        "lat": 60.02,
+        "lon": 30.0
+      }
+    },
+    {
+      "id": "TGT_HEADON",
+      "type": "power",
+      "colreg_status": "NORMAL",
+      "course": 180,
+      "speed": 10,
+      "start": {
+        "lat": 60.06,
+        "lon": 30.01
+      }
+    }
+  ],
+  "expected_outcome": {
+    "action": "ABORT_OVERTAKE",
+    "reason": "Hazard detected during overtaking"
+  }
+}

@@ -1,0 +1,29 @@
+# Environments
+venv/
+env/
+.env
+
+# Python caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Temporary and IDE files
+.vscode/
+.idea/
+.DS_Store
+*.log
+.pytest_cache/
+
+# Snapshots
+fusion-core/snapshots/*.jpg
+fusion-core/snapshots/*.png
+
+# Models
+# Exclude heavy backups and training checkpoints
+cv-core/models/unused/
+cv-core-data-and-prep/models/
+# Keep production models in cv-core/models/ (tracked by default now)
+
+# OS generated files
+Thumbs.db

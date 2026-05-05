@@ -1,0 +1,33 @@
+{
+  "id": "S6_Fog_HeadOn",
+  "name": "Fog: Head-On",
+  "rule": "Rule 19",
+  "description": "Встречное сближение в тумане. Действия только по радару.",
+  "own_ship": {
+    "id": "OWN",
+    "course": 0,
+    "speed": 5,
+    "start": {
+      "lat": 60.0,
+      "lon": 30.0
+    }
+  },
+  "targets": [
+    {
+      "id": "TGT_01",
+      "type": "power",
+      "colreg_status": "NORMAL",
+      "course": 180,
+      "speed": 5,
+      "start": {
+        "lat": 60.05,
+        "lon": 30.0
+      }
+    }
+  ],
+  "expected_outcome": {
+    "action": "ALTER_COURSE_RIGHT",
+    "is_fog": true,
+    "reason": "Restricted visibility maneuvering"
+  }
+}

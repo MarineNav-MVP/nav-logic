@@ -1,0 +1,32 @@
+{
+  "id": "S3_Crossing_Left",
+  "name": "Crossing (Stand-On)",
+  "rule": "Rule 17",
+  "description": "Пересечение курсов, цель слева. Мы сохраняем курс и скорость.",
+  "own_ship": {
+    "id": "OWN",
+    "course": 0,
+    "speed": 10,
+    "start": {
+      "lat": 60.0,
+      "lon": 30.0
+    }
+  },
+  "targets": [
+    {
+      "id": "TGT_01",
+      "type": "power",
+      "colreg_status": "NORMAL",
+      "course": 90,
+      "speed": 10,
+      "start": {
+        "lat": 60.03,
+        "lon": 29.95
+      }
+    }
+  ],
+  "expected_outcome": {
+    "action": "KEEP_COURSE",
+    "reason": "Stand-on vessel (target on port side)"
+  }
+}

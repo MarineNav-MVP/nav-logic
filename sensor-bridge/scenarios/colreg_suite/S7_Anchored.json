@@ -1,0 +1,32 @@
+{
+  "id": "S7_Anchored",
+  "name": "Vessel at Anchor",
+  "rule": "Rule 30",
+  "description": "Судно на якоре прямо по курсу. Обязаны обойти.",
+  "own_ship": {
+    "id": "OWN",
+    "course": 0,
+    "speed": 10,
+    "start": {
+      "lat": 60.0,
+      "lon": 30.0
+    }
+  },
+  "targets": [
+    {
+      "id": "TGT_01",
+      "type": "power",
+      "colreg_status": "ANCHORED",
+      "course": 0,
+      "speed": 0,
+      "start": {
+        "lat": 60.03,
+        "lon": 30.0
+      }
+    }
+  ],
+  "expected_outcome": {
+    "action": "ALTER_COURSE_RIGHT",
+    "reason": "Avoid stationary object"
+  }
+}

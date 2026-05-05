@@ -1,0 +1,26 @@
+{
+  "name": "Overtaking Situation",
+  "rule": "COLREGS-13",
+  "description": "Мы догоняем другое судно. Мы уступаем.",
+  "own_ship": {
+    "id": "OWN",
+    "start": {"lat": 59.9900, "lon": 29.7600},
+    "course": 90.0,
+    "speed": 15.0,
+    "ship_type": "cargo"
+  },
+  "targets": [
+    {
+      "id": "TR01",
+      "start": {"lat": 59.9900, "lon": 29.7700},
+      "course": 90.0,
+      "speed": 10.0,
+      "ship_type": "cargo"
+    }
+  ],
+  "simulation": {
+    "duration_min": 30,
+    "update_hz": 1.0,
+    "radar_range_nm": 12.0
+  }
+}

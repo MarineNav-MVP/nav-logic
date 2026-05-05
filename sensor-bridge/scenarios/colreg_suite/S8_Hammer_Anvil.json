@@ -1,0 +1,43 @@
+{
+  "id": "S8_Hammer_Anvil",
+  "name": "Hammer & Anvil",
+  "rule": "Rule 18 + 15",
+  "description": "Справа катер (уступаем), слева парусник (ТОЖЕ уступаем). Тупиковая ситуация для простого маневра.",
+  "own_ship": {
+    "id": "OWN",
+    "course": 0,
+    "speed": 10,
+    "start": {
+      "lat": 60.0,
+      "lon": 30.0
+    }
+  },
+  "targets": [
+    {
+      "id": "TGT_POWER_R",
+      "type": "power",
+      "colreg_status": "NORMAL",
+      "course": 270,
+      "speed": 10,
+      "start": {
+        "lat": 60.03,
+        "lon": 30.05
+      }
+    },
+    {
+      "id": "TGT_SAIL_L",
+      "type": "sailing",
+      "colreg_status": "NORMAL",
+      "course": 90,
+      "speed": 6,
+      "start": {
+        "lat": 60.03,
+        "lon": 29.95
+      }
+    }
+  ],
+  "expected_outcome": {
+    "action": "REDUCE_SPEED_OR_DEEP_RIGHT",
+    "reason": "Complex priority conflict (Power on right, Sail on left)"
+  }
+}

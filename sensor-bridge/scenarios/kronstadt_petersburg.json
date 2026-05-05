@@ -1,0 +1,26 @@
+{
+  "name": "Kronstadt - St. Petersburg Transit",
+  "rule": "Navigation",
+  "description": "Переход между Кронштадтом и Санкт-Петербургом.",
+  "own_ship": {
+    "id": "OWN",
+    "start": {"lat": 59.99, "lon": 29.77},
+    "course": 115.0,
+    "speed": 15.0,
+    "ship_type": "cargo"
+  },
+  "targets": [
+    {
+      "id": "TR01",
+      "start": {"lat": 59.92, "lon": 30.15},
+      "course": 295.0,
+      "speed": 18.0,
+      "ship_type": "tanker"
+    }
+  ],
+  "simulation": {
+    "duration_min": 60,
+    "update_hz": 1.0,
+    "radar_range_nm": 12.0
+  }
+}

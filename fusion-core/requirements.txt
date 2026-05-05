@@ -1,0 +1,12 @@
+# Основные зависимости
+paho-mqtt==2.1.0
+numpy==2.4.3
+python-dotenv==1.2.2
+
+# Зависимости для CV-детекции (cv-core-main)
+# Устанавливаются только если используется реальная CV-детекция
+ultralytics>=8.0.0
+torch>=2.0.0
+torchvision>=0.15.0
+opencv-python>=4.8.0
+pillow>=10.0.0

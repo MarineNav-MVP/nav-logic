@@ -1,0 +1,32 @@
+{
+  "id": "S5_Priority_CBD",
+  "name": "Priority: CBD",
+  "rule": "Rule 18",
+  "description": "Цель слева, но имеет статус CBD. Мы обязаны уступить дорогу.",
+  "own_ship": {
+    "id": "OWN",
+    "course": 0,
+    "speed": 10,
+    "start": {
+      "lat": 60.0,
+      "lon": 30.0
+    }
+  },
+  "targets": [
+    {
+      "id": "TGT_01",
+      "type": "power",
+      "colreg_status": "CBD",
+      "course": 90,
+      "speed": 5,
+      "start": {
+        "lat": 60.03,
+        "lon": 29.95
+      }
+    }
+  ],
+  "expected_outcome": {
+    "action": "ALTER_COURSE_RIGHT",
+    "reason": "Give way to CBD vessel"
+  }
+}

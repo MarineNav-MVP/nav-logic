@@ -1,0 +1,32 @@
+{
+  "id": "S4_Overtaking",
+  "name": "Overtaking",
+  "rule": "Rule 13",
+  "description": "Мы догоняем более медленное судно. Обязаны держаться в стороне.",
+  "own_ship": {
+    "id": "OWN",
+    "course": 0,
+    "speed": 15,
+    "start": {
+      "lat": 60.0,
+      "lon": 30.0
+    }
+  },
+  "targets": [
+    {
+      "id": "TGT_01",
+      "type": "power",
+      "colreg_status": "NORMAL",
+      "course": 0,
+      "speed": 5,
+      "start": {
+        "lat": 60.02,
+        "lon": 30.0
+      }
+    }
+  ],
+  "expected_outcome": {
+    "action": "ALTER_COURSE_ANY",
+    "reason": "Overtaking vessel must keep clear"
+  }
+}

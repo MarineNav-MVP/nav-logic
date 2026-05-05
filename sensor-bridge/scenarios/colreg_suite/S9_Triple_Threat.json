@@ -1,0 +1,43 @@
+{
+  "id": "S9_Triple_Threat",
+  "name": "Triple Conflict",
+  "rule": "Rule 15 Multi",
+  "description": "Три судна сходятся в точку под углом 120°. Каждое должно уступать.",
+  "own_ship": {
+    "id": "OWN",
+    "course": 0,
+    "speed": 10,
+    "start": {
+      "lat": 60.0,
+      "lon": 30.0
+    }
+  },
+  "targets": [
+    {
+      "id": "TGT_1",
+      "type": "power",
+      "colreg_status": "NORMAL",
+      "course": 240,
+      "speed": 10,
+      "start": {
+        "lat": 60.04,
+        "lon": 30.04
+      }
+    },
+    {
+      "id": "TGT_2",
+      "type": "power",
+      "colreg_status": "NORMAL",
+      "course": 120,
+      "speed": 10,
+      "start": {
+        "lat": 60.04,
+        "lon": 29.96
+      }
+    }
+  ],
+  "expected_outcome": {
+    "action": "ALTER_COURSE_RIGHT",
+    "reason": "Multi-vessel crossing"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "[FREE ROAM] Infinite Ocean",
+  "description": "Свободное плавание в чистом океане. Используйте кнопку Chaos для генерации трафика.",
+  "rule": "None",
+  "own_ship": {
+    "id": "OWN",
+    "type": "power",
+    "course": 0.0,
+    "speed": 10.0,
+    "start": {
+      "lat": 64.6,
+      "lon": 39.5
+    }
+  },
+  "targets": [],
+  "expected_outcome": {
+    "action": "NONE",
+    "reason": "Clear environment"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "id": "S2_Crossing_Right",
+  "name": "Crossing (Give-Way)",
+  "rule": "Rule 15",
+  "description": "Пересечение курсов, цель справа. Мы обязаны уступить дорогу.",
+  "own_ship": {
+    "id": "OWN",
+    "course": 0,
+    "speed": 10,
+    "start": {
+      "lat": 60.0,
+      "lon": 30.0
+    }
+  },
+  "targets": [
+    {
+      "id": "TGT_01",
+      "type": "power",
+      "colreg_status": "NORMAL",
+      "course": 270,
+      "speed": 10,
+      "start": {
+        "lat": 60.03,
+        "lon": 30.05
+      }
+    }
+  ],
+  "expected_outcome": {
+    "action": "ALTER_COURSE_RIGHT",
+    "reason": "Give way to vessel on starboard"
+  }
+}

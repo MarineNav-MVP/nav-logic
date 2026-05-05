@@ -1,0 +1,45 @@
+{
+  "name": "COLREG Complex Situation",
+  "description": "Сложная ситуация с участием парусника (слева) и судна NUC (справа). Проверка иерархии приоритетов МППСС-72.",
+  "rule": "Rule 18 (Responsibility between Vessels)",
+  "own_ship": {
+    "id": "OWN",
+    "type": "power",
+    "course": 0.0,
+    "speed": 10.0,
+    "start": {
+      "lat": 60.0,
+      "lon": 29.0
+    }
+  },
+  "targets": [
+    {
+      "id": "TGT_SAIL_01",
+      "type": "sailing",
+      "colreg_status": "NORMAL",
+      "course": 270.0,
+      "speed": 6.0,
+      "start": {
+        "lat": 60.02,
+        "lon": 29.05
+      },
+      "comment": "Парусное судно слева. По правилу 18 (a)(iv) мы должны уступить."
+    },
+    {
+      "id": "TGT_NUC_02",
+      "type": "power",
+      "colreg_status": "NUC",
+      "course": 225.0,
+      "speed": 4.0,
+      "start": {
+        "lat": 60.03,
+        "lon": 28.98
+      },
+      "comment": "Судно, лишенное возможности управляться (NUC) справа. Мы обязаны уступить по правилу 18 (a)(i)."
+    }
+  ],
+  "expected_outcome": {
+    "action": "ALTER_COURSE_RIGHT",
+    "reason": "Avoidance of NUC and SAILING vessels according to Rule 18"
+  }
+}
